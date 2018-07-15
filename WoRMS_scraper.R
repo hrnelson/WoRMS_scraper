@@ -4,11 +4,11 @@ library(stringr)
 
 prefix <- "http://www.marinespecies.org/aphia.php?p=taxdetails&id="
 
-#returns data frame with species contained within taxa (associated with WoRMS AphialID #) provided
-get_taxa <- function(AphialID) {
-  name <- get_name(AphialID)
-  rank <- get_rank(AphialID)
-  parents <- as.data.frame(cbind(name, AphialID))
+#returns data frame with species contained within taxa (associated with WoRMS AphiaID #) provided
+get_taxa <- function(AphiaID) {
+  name <- get_name(AphiaID)
+  rank <- get_rank(AphiaID)
+  parents <- as.data.frame(cbind(name, AphiaID))
   names(parents)[1] <- rank
   names(parents)[2] <- "id"
   parents[] <- lapply(parents, as.character)
@@ -37,9 +37,9 @@ get_taxa <- function(AphialID) {
   return(parents)
 }
 
-#returns scientific name associated with WorMS AphialID #
-get_name <- function(AphialID) {
-  url <- paste(prefix,AphialID,sep="")
+#returns scientific name associated with WorMS AphiaID #
+get_name <- function(AphiaID) {
+  url <- paste(prefix,AphiaID,sep="")
   webpage <- read_html(url)
   name <- webpage %>%
     html_nodes("b") %>%
@@ -48,9 +48,9 @@ get_name <- function(AphialID) {
   return(name)
 }
 
-#returns rank associated with WorMS AphialID #
-get_rank <- function(AphialID){
-  url <- paste(prefix,AphialID,sep="")
+#returns rank associated with WorMS AphiaID #
+get_rank <- function(AphiaID){
+  url <- paste(prefix,AphiaID,sep="")
   webpage <- read_html(url)
   rank <- webpage %>%
     html_nodes("#Rank") %>%
@@ -58,11 +58,11 @@ get_rank <- function(AphialID){
   rank <- gsub("\\s", "", rank)
 }
 
-#returns direct children associated with WorMS AphialID #
-get_children <- function(AphialID) {
+#returns direct children associated with WorMS AphiaID #
+get_children <- function(AphiaID) {
   
   #get children
-  url <- paste(prefix,AphialID,sep="")
+  url <- paste(prefix,AphiaID,sep="")
   webpage <- read_html(url)
   children <- webpage %>%
     html_nodes(".aphia_core_pb-3") %>%
@@ -81,23 +81,23 @@ get_children <- function(AphialID) {
   if (nrow(children) == 0) {
     children <- "NA"
   }
-  else {#add AphialID of children
+  else {#add AphiaID of children
     names(children) <- c("rank", "name")
-    children <- cbind(children, id = 0) #add row for AphialID, initialize as 0
-    if (children[1,1] != "Species") { #only get AphialID if not species 
+    children <- cbind(children, id = 0) #add row for AphiaID, initialize as 0
+    if (children[1,1] != "Species") { #only get AphiaID if not species 
       #paste here
       s <- html_session(url)
       for (i in 1:nrow(children)) {
-        #get AphialID
+        #get AphiaID
         child_page <- s %>% follow_link(as.character(children[i,2])) %>% read_html()
         id <- child_page %>%
           html_nodes(".aphia_core_break-words") %>%
           html_text()
         
-        #clean up AphialID
+        #clean up AphiaID
         id <- gsub("\\D", "", as.data.frame(str_split(id, "u", n = 2))[1,1])
         
-        #store AphialID
+        #store AphiaID
         children[i,3] <- id
         
         #convert dataframe to characters
@@ -108,7 +108,7 @@ get_children <- function(AphialID) {
   return (children) 
 }
 
-taxa <- get_taxa(1839) #replace 1839 with relevant AphialID
+taxa <- get_taxa(1839) #replace 1839 with relevant AphiaID
 
 ## clean up file
 taxa <- taxa[,-ncol(taxa)] #remove id column
