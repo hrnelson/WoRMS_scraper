@@ -1,2 +1,16 @@
 # WoRMS_scraper
-Gets species list from WoRMS website
+*Get species list from WoRMS website*
+
+**Authors:** Edmunds, P. J., L. Bramanti, and H. R. Nelson
+
+**Description:** This repository provides code to harvest a list of species, given some higher order classification (e.g. genus, family, order, class, etc.) from the [WoRMS] (http://www.marinespecies.org/) website.
+
+**Contents:** Two R script files, two output files, a .gitignore, and a README.md file.
+
+**Scripts:** 
+* WoRMS_scraper.R: This script is used to import species from the WoRMS website and create a csv file (taxa.csv)
+* WoRMS_summary.R: This script imports taxa.csv and summarizes some basic information about the species
+
+**Output:**
+* taxa.csv: This is example output of a list of species produced by WoRMS_scraper.R
+* genera.csv: This is example output of a list of genera produced by WoRMS_summary.R
