@@ -1,7 +1,7 @@
 # WoRMS_scraper
 *Get species list from WoRMS website*
 
-**Authors:** Edmunds, P. J., L. Bramanti, and H. R. Nelson
+**Authors:** Nelson, H. R.
 
 **Description:** This repository provides code to harvest a list of species, given some higher order classification (e.g. genus, family, order, class, etc.) from the [WoRMS] (http://www.marinespecies.org/) website.
 
