@@ -12,5 +12,5 @@
 * WoRMS_summary.R: This script imports taxa.csv and summarizes some basic information about the species
 
 **Output:**
-* taxa.csv: This is example output of a list of species produced by WoRMS_scraper.R for [Ascidiacea (AphialID #1839)](http://www.marinespecies.org/aphia.php?p=taxdetails&id=1839)
+* taxa.csv: This is example output of a list of species produced by WoRMS_scraper.R for [Ascidiacea (AphiaID #1839)](http://www.marinespecies.org/aphia.php?p=taxdetails&id=1839)
 * genera.csv: This is example output of a list of genera produced by WoRMS_summary.R
