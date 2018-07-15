@@ -3,7 +3,7 @@
 
 **Authors:** Nelson, H. R.
 
-**Description:** This repository provides code to harvest a list of species, given some higher order classification (e.g. genus, family, order, class, etc.) from the [WoRMS] (http://www.marinespecies.org/) website.
+**Description:** This repository provides code to harvest a list of species, given some higher order classification (e.g. genus, family, order, class, etc.) from the [WoRMS](http://www.marinespecies.org/) website.
 
 **Contents:** Two R script files, two output files, a .gitignore, and a README.md file.
 
